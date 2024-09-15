@@ -1,0 +1,11 @@
+{
+    "name": "migration",
+    "private": true,
+    "dependencies": {
+        "db": "workspace:*",
+        "bun-migrate": "redraskal/bun-migrate#main"
+    },
+    "scripts": {
+        "migrate": "bun run ./migrate.js"
+    }
+}
