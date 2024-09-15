@@ -1,7 +1,16 @@
 {
     "name": "db",
+    "type": "module",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./types/index.d.ts",
+                "default": "./index.js"
+            }
+        }
+    },
     "private": true,
-    "exports": [
-        "./db.js"
-    ]
+    "devDependencies": {
+        "bun-types": "^1.1.27"
+    }
 }

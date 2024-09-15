@@ -1,8 +1,8 @@
 import { migrate } from "bun-migrate";
-import pubsnubDb from "db";
+import dbConnection from "db";
 import { generateIdFromEntropySize } from "lucia";
 
-const db = pubsnubDb();
+const db = dbConnection();
 await migrate(db, {
     migrations: './migrations'
 });

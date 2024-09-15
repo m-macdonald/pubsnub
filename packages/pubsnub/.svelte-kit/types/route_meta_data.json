@@ -1,9 +1,0 @@
-{
-	"/": [],
-	"/login": [
-		"src/routes/login/+page.server.js"
-	],
-	"/report": [
-		"src/routes/report/+page.server.js"
-	]
-}

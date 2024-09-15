@@ -6,7 +6,6 @@
         "bun-migrate": "redraskal/bun-migrate#main"
     },
     "scripts": {
-        "local-migrate": "bun run ./migrate.js",
         "migrate": "bun run ./migrate.js"
     }
 }

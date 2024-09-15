@@ -1,5 +1,5 @@
 import { RouteConstants } from '$lib/constants/route.constants';
-import { db } from 'db';
+import db from 'db';
 import { fail, redirect } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
