@@ -1,0 +1,53 @@
+{
+	"name": "pubsnub-client",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev --env-file=../../.env.local",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+		"test": "npm run test:integration && npm run test:unit",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"test:integration": "playwright test",
+		"test:unit": "vitest"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.28.1",
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^4.0.0-next.6",
+		"@tailwindcss/typography": "^0.5.14",
+		"@types/eslint": "^9.6.0",
+		"autoprefixer": "^10.4.20",
+		"bun-types": "^1.1.27",
+		"clsx": "^2.1.1",
+		"eslint": "^9.0.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-svelte": "^2.36.0",
+		"globals": "^15.0.0",
+		"prettier": "^3.1.1",
+		"prettier-plugin-svelte": "^3.1.2",
+		"prettier-plugin-tailwindcss": "^0.6.5",
+		"svelte": "^5.0.0-next.1",
+		"svelte-adapter-bun": "^0.5.2",
+		"svelte-check": "^4.0.0",
+		"tailwind-variants": "^0.2.1",
+		"tailwindcss": "^3.4.9",
+		"typescript": "^5.0.0",
+		"vite": "^5.0.3",
+		"vitest": "^2.0.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"@lucia-auth/adapter-sqlite": "^3.0.2",
+		"bits-ui": "^0.21.13",
+		"db": "workspace:*",
+		"formsnap": "^1.0.1",
+		"lucia": "^3.2.0",
+		"sveltekit-superforms": "^2.18.0",
+		"zod": "^3.23.8"
+	}
+}
