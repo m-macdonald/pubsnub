@@ -4,7 +4,7 @@
  
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 43 13% 89%;
     --foreground: 222.2 84% 4.9%;
  
     --muted: 210 40% 96.1%;
@@ -19,7 +19,7 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
  
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 119 53% 32%;
     --primary-foreground: 210 40% 98%;
  
     --secondary: 210 40% 96.1%;
@@ -37,7 +37,7 @@
   }
  
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 43 13% 89%;
     --foreground: 210 40% 98%;
  
     --muted: 217.2 32.6% 17.5%;
@@ -75,4 +75,31 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+#background {
+    height: 100;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    overflow: hidden;
+}
+
+html::before {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    height: 5000px;
+    width: 5000px;
+    left: 0;
+    top: 0;
+    background: url('$lib/images/sandwich.svg'), url('/src/lib/images/sandwich.svg'), url('/src/lib/images/sandwich.svg'), url('/src/lib/images/sandwich.svg'), url('/src/lib/images/sandwich.svg'), url('/src/lib/images/sandwich.svg'), url('/src/lib/images/sandwich.svg'), url('/src/lib/images/sandwich.svg'), url('/src/lib/images/sandwich.svg');
+    background-size: 100px;
+    /* background-repeat: repeat; */
+    background-position: 0 0, 15% 5%, 22% 45%, 45% 56%, 60% 60%, 75% 3%, 87% 88%, 91% 3%;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    padding: 50px;
+    /* transform: translate(-50%, -50%) rotate(-45deg); */
+    opacity: 0.3
 }

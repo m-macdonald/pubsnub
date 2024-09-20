@@ -1,6 +1,7 @@
 import { migrate } from "bun-migrate";
 import dbConnection from "db";
 import { generateIdFromEntropySize } from "lucia";
+import { password as bunPassword } from "bun";
 
 const db = dbConnection();
 await migrate(db, {
@@ -24,7 +25,7 @@ async function registerUser(db) {
     }
 
     const userId = generateIdFromEntropySize(10);
-    const passwordHash = await Bun.password.hash(process.env.PASSWORD);
+    const passwordHash = await bunPassword.hash(process.env.PASSWORD);
 
     await db.run(`
         INSERT INTO user(id, username, password_hash)

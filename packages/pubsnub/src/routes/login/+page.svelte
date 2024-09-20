@@ -6,8 +6,12 @@
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { formSchema } from './schema.js';
 
-    /**@type {import('./$types').PageData}*/
-    export let data;
+    /**@typedef {Object} Props
+     * @property {import('./$types').PageData} data
+    */
+
+    /**@type {Props}*/
+    let { data } = $props();
 
     const form = superForm(data.form, {
         validators: zodClient(formSchema)

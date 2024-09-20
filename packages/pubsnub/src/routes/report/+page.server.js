@@ -1,6 +1,10 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { RouteConstants } from '$lib/constants/route.constants';
 import { lucia } from '$lib/server/auth';
+import { formSchema } from './schema';
+import { zod } from 'sveltekit-superforms/adapters';
+import { superValidate } from 'sveltekit-superforms';
+import dbConnection from 'db';
 
 /**@type {import('./$types').PageServerLoad} */
 export const load = async (event) => {
@@ -9,25 +13,29 @@ export const load = async (event) => {
     }
 
     return {
-        user: event.locals.user
+        form: await superValidate(zod(formSchema))
     }
 }
 
 /**@type {import('./$types').Actions} */
 export const actions = {
-    //  TODO : Is this the right spot for this?
     default: async (event) => {
-        if(!event.locals.session) {
-            return(fail(401));
+        const form = await superValidate(event.request, zod(formSchema));
+
+        if (!form.valid) {
+            return fail(400, { form })
         }
 
-        await lucia.invalidateSession(event.locals.session.id);
-        const sessionCookie = await lucia.createBlankSessionCookie();
-        event.cookies.set(sessionCookie.name, sessionCookie.value, {
-            path: ".",
-            ...sessionCookie.attributes
-        });
-
-        return redirect(302, RouteConstants.LOGIN)
+        console.log(form.data);
+        const db = dbConnection();
+        try {
+            db.run(`
+                INSERT INTO snub (snub_indicator, comment)
+                VALUES (?, ?)`, [form.data.snubbedInd, form.data.comment]);
+        } catch (ex) {
+            console.log(ex)
+        } finally {
+            db.close();
+        }                    
     }
 }

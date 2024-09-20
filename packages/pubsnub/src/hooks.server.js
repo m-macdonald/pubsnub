@@ -20,6 +20,14 @@ export const handle = async ({event, resolve}) => {
         });
     }
 
+    if (!session) {
+		const sessionCookie = lucia.createBlankSessionCookie();
+		event.cookies.set(sessionCookie.name, sessionCookie.value, {
+			path: ".",
+			...sessionCookie.attributes
+		});
+	}
+
     event.locals.user = user;
     event.locals.session = session;
 
